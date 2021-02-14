@@ -7,7 +7,7 @@
 - [Description](#description)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Demo] (#demo)
+- [Demo](#demo)
 - [Deployed](#deployedapplicationlink)
 - [Languages](#languages)
 - [Screenshot](#screenshot)
