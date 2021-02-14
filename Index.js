@@ -155,6 +155,7 @@ const questions = [
     
     };
 
+    // Function that asks if you would like to add an employee. This will keep coming up until you are finished. When you're finished and say no, it will generate the index.html file
     const addEmployee = async (array) => {
        await inquirer
         .prompt({
@@ -172,13 +173,16 @@ const questions = [
             if (!fs.existsSync(fileDirectory)) {
                 fs.mkdirSync(fileDirectory)
             }
+
+            // calls the renderHTML function in the generateHTML.js file to create the index.html
             
             fs.writeFile(filePath, renderHTML(array), (err) => {
         
                 if (err) {
                     return console.log(err);
                 }
-            
+                
+                // Success message
                 console.log("Your index.html file has been created in the 'dist' folder!");
             });
 
