@@ -9,6 +9,7 @@ const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
 const GenerateHTML = require("./lib/GenerateHTML");
 
+
 // Employee array
 const employees = [];
 
@@ -81,7 +82,10 @@ const questions = [
                         message: "What school is the intern from? (Required)" 
                     })
             }
+
         })
+
+
 
         // Commented out for now, but will have to pass the responses to the write the html with this
         // .then(inquirerResponses => {
