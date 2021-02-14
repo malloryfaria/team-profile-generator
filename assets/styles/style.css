@@ -2,18 +2,14 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
+li:hover {
+    background-color: lightgrey;
+}
+
+a {
+    color: black;
+}
 a:hover {
-    background-color: cadetblue;        
-}
-
-.bg-info {
-    background-color: cornflowerblue;
-}
-
-.bg-primary {
-    background-color: darkcyan;
-}
-
-.bg-success {
-    background-color: lightseagreen;
+    background-color: lavenderblush;        
+    border-radius: 10%;
 }
