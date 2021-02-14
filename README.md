@@ -53,7 +53,7 @@ Once the application runs, it will generate an index.html file in the "dist" fol
 
 Here is a video demonstration of the application and the generated index.html file at the end:
 
-[![Team Profile Generator Demo](./assets/images/screenshot2.jpg?raw=true)](https://youtu.be/ItXS4mn2ufc)]
+[![Team Profile Generator Demo](./assets/images/screenshot2.jpg?raw=true)](https://youtu.be/ItXS4mn2ufc)
 
 ## Deployed application link
 
