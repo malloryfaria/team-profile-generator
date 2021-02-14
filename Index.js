@@ -2,18 +2,19 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const path = require("path");
+const fileDirectory = path.resolve(__dirname, "dist");
+const filePath = path.join(fileDirectory, "team.html");
 
 // Required module exports
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
-const GenerateHTML = require("./lib/GenerateHTML");
-
+const render = require("./lib/generateHTML");
 
 // Employee array
-const employees = [];
+let employees = [];
 
-// Questions array
+// Questions array for all employees
 const questions = [           
     {
         type: "input",
@@ -37,62 +38,114 @@ const questions = [
         choices: ["Engineer", "Intern", "Manager"]
     }
     ]
-    
-    // Commented out for now, but will have to pass the responses to the write the html with this
-    // // Function to write the index.html file
-    // function writeToFile(fileName, data) {
-    //     // Uses the node path module & process.cwd function to join the current working directory to the file name passed to it from the init function
-    //     return fs.writeFileSync(path.join(process.cwd(), fileName), data);
-    // };
 
+    // Questions for manager role
+    managerQuestions = [
+        {
+            type: "input",
+            name: "officeNumber",
+            message: "What is the manager's office number? (Required)" 
+        }
+    ]
+
+    // Questions for engineer role
+    engineerQuestions = [
+        {
+            type: "input",
+            name: "github",
+            message: "What is the engineer's Github Username? (Required)",
+            validate: githubInput => {
+                if (githubInput) {
+                  return true;
+                } else {
+                  console.log("Please enter a GitHub username!");
+                  return false;
+                }
+              }
+        }
+    ]
+
+    // Questions for intern role
+    internQuestions = [
+
+        {
+            type: "input",
+            name: "school",
+            message: "What school is the intern from? (Required)" 
+        }
+    ]
+
+    // Function to create new employees
+    const newEmployee = () => {
+        inquirer.prompt(questions)
+          .then((response) => {
+            let name = response.name;
+            let id = response.id;
+            let email = response.email;
+            let role = response.role;
+            let officeNumber;
+            let github;
+            let school;
+
+            if (role === "Engineer") {
+            inquirer.prompt(engineerQuestions).then((response) =>{
+                github = response.github;
+                let employee = new Engineer(name, id, email, github);
+                employees.push(employee);
+                anotherOne();
+                });
+            }
+            else if (role === "Manager") {
+                inquirer.prompt(managerQuestions).then((response) =>{
+                        officeNumber = response.officeNumber;
+                        let employee = new Manager(name, id, email, officeNumber);
+                        employees.push(employee);
+                        anotherOne();
+                    });
+                }
+            else if (role === "Intern") {
+                inquirer.prompt(internQuestions).then((response) =>{
+                        school = response.school;
+                        let employee = new Intern(name, id, email, school);
+                        employees.push(employee);
+                        anotherOne();
+                    });
+            }
+
+        });    
+    
+    }
 
     // Function to initialize the application
     function init() {
-        inquirer.prompt(questions)
-        .then(function(inquirerResponses) {
-            if (inquirerResponses.role === "Engineer") {
-            inquirer.prompt(
-                {
-                    type: "input",
-                    name: "github",
-                    message: "What is the engineer's Github Username? (Required)",
-                    validate: githubInput => {
-                        if (githubInput) {
-                          return true;
-                        } else {
-                          console.log("Please enter a GitHub username!");
-                          return false;
-                        }
-                      }
-                })
-            }
-            else if (inquirerResponses.role === "Manager") {
-                inquirer.prompt(
-                    {
-                        type: "input",
-                        name: "officeNumber",
-                        message: "What is the manager's office number? (Required)" 
-                    })
+        anotherOne();
+    };   
+
+
+    const anotherOne = () => {
+        inquirer
+        .prompt({
+            type: "confirm",
+            name: "anotherOne",
+            message: "Would you like to add an employee?"
+        }).then(function(data){
+            if (data.anotherOne){
+                newEmployee();
+            } else {
+                const renderHTML = (employees) =>{
+                    fs.writeFile(filePath,render(employees),"utf8",function(err){
+                        if (err) {return console.log(err)};
+          
+                        console.log("Success!");
+                       }); 
                 }
-            else if (inquirerResponses.role === "Intern") {
-                inquirer.prompt(
-                    {
-                        type: "input",
-                        name: "school",
-                        message: "What school is the intern from? (Required)" 
-                    })
-            }
+                renderHTML();
 
-        })
-
-
-
-        // Commented out for now, but will have to pass the responses to the write the html with this
-        // .then(inquirerResponses => {
-        //     console.log("Your html file is now being generated. You will find the completed file in the 'dist' folder.")
-        // writeToFile("/dist/index.html", GenerateHTML({ ...inquirerResponses }));
-        // })
-    };
+                } 
+                
+                
+            }) 
+        }
 
     // Function call to initialize app
     init();
