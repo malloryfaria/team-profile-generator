@@ -55,6 +55,11 @@ Click the image below for a video demonstration of the application and the gener
 
 [![Team Profile Generator Demo](./assets/images/demoscreenshot.jpg?raw=true)](https://youtu.be/ItXS4mn2ufc)
 
+
+Click the image below for a video demonstration of the tests passing:
+
+[![Team Profile Test Passing Demo](./assets/images/demoyoutube.jpg?raw=true)](https://youtu.be/crwdQJ7V-A4)
+
 ## Deployed application link
 
 https://github.com/malloryfaria/team-profile-generator <br />
@@ -68,6 +73,10 @@ JavaScript, Bootstrap, Google Fonts, Material Icons, HTML, Node, Inquirer, Jest 
 What the command line interface looks like:
 
 ![Team Profile Generator Command Line](./assets/images/screenshot.jpg?raw=true) <br /> 
+
+What the tests passing looks like:
+
+![Team Profile Generator Tests Command Line](./assets/images/testpassing.jpg?raw=true) <br /> 
 
 What the index.html file looks like once complete:
 ![Sample Index.HTML](./assets/images/screenshot2.jpg?raw=true) <br /> 
