@@ -7,7 +7,8 @@
 - [Description](#description)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Deployed](#deployed)
+- [Demo](#demo)
+- [Deployed](#deployedapplicationlink)
 - [Languages](#languages)
 - [Screenshot](#screenshot)
 - [License](#license)
@@ -49,7 +50,7 @@ node index
 
 Once the application runs, it will generate an index.html file in the "dist" folder. If you already have an index.html file in that folder, it will first prompt you to overwrite it or not.
 
-## Video demonstration of application
+## Demo
 
 Click the image below for a video demonstration of the application and the generated index.html file at the end:
 
@@ -64,7 +65,7 @@ Click the image below for a video demonstration of the tests passing:
 
 https://github.com/malloryfaria/team-profile-generator <br />
 
-## Languages/Technology Used
+## Languages
 
 JavaScript, Bootstrap, Google Fonts, Material Icons, HTML, Node, Inquirer, Jest <br />
 
